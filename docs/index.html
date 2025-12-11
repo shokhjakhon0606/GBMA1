@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>clistudy – Study Time Tracker</title>
+</head>
+<body>
+    <h1>clistudy</h1>
+    <p>
+        clistudy is a simple command-line tool that helps you track how many minutes
+        you actually study each day and each week.
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Log study sessions with one command</li>
+        <li>See today's total time per topic</li>
+        <li>See last 7 days summary per topic</li>
+        <li>No accounts, everything stored locally as JSON</li>
+    </ul>
+
+    <h2>Usage</h2>
+    <pre>
+$ clistudy log 60 "Rust exam prep"
+Logged 60 minutes for 'Rust exam prep'.
+
+$ clistudy today
+Today's study summary:
+- Rust exam prep: 60 min
+-------------------------
+Total: 60 min
+
+$ clistudy week
+Last 7 days summary:
+- Rust exam prep: 240 min
+-------------------------
+Total: 240 min
+    </pre>
+
+    <h2>Download</h2>
+    <p>
+        Download the binaries from the GitHub Actions artifacts or releases
+        for your platform (Linux x86_64, Linux aarch64, etc.).
+    </p>
+
+    <h2>Pricing</h2>
+    <p>
+        clistudy is free and open source. In a real-world scenario, advanced
+        features (CSV export, integrations, team reports) could be offered as
+        a small paid upgrade, while the core tool stays free for students.
+    </p>
+</body>
+</html>

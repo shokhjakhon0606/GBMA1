@@ -1,0 +1,47 @@
+name: Build static Rust binaries
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        target:
+          - x86_64-unknown-linux-musl
+          - aarch64-unknown-linux-musl
+
+    env:
+      BINARY_NAME: clistudy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install cross
+        run: cargo install cross
+
+      - name: Add target
+        run: rustup target add ${{ matrix.target }}
+
+      - name: Build (release)
+        run: cross build --release --target ${{ matrix.target }}
+
+      - name: Prepare artifact
+        run: |
+          mkdir -p artifacts
+          cp target/${{ matrix.target }}/release/${BINARY_NAME} artifacts/${BINARY_NAME}-${{ matrix.target }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clistudy-${{ matrix.target }}
+          path: artifacts/*
